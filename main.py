@@ -3,14 +3,18 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import tkinter as tk
+
+
 def callChatWithOpenAI():
     # chatwithOpenAI(question)
     print("question: " + question)
     print("answer: " + chatwithOpenAI(question))
+
+
 def chatwithOpenAI(question):
     # Use a breakpoint in the code line below to debug your script.
     import os
-    #import openai
+    # import openai
     # openai.organization = ""
     # openai.api_key = os.getenv("OPENAI_API_KEY")
     # openai.Model.list()
@@ -24,7 +28,7 @@ def chatwithOpenAI(question):
 
     # Set the prompt for the model
     # prompt = "Write a short story about a person who goes on a journey"
-    prompt = question    # Generate a response from the model
+    prompt = question  # Generate a response from the model
     completion = openai.Completion.create(
         engine=model_engine,
         prompt=prompt,
@@ -39,18 +43,17 @@ def chatwithOpenAI(question):
     text = completion.choices[0]["text"]
 
     # Print the text
-    #print(text)
+    # print(text)
     return text
     # Place the label, text field, and button in the window
 
 
-
-
 # Example usage
-def copy_text():
-  input_text = input_text_field.get()
-  output_text_field.delete(0, tk.END)
-  output_text_field.insert(0, input_text)
+def process_question():
+    input_text = input_text_field.get("1.0", "end-1c")
+    output_text_field.delete("1.0", "end")
+    resultText = chatwithOpenAI(input_text)
+    output_text_field.insert("end", resultText)
 
 
 # Press the green button in the gutter to run the script.
@@ -61,18 +64,18 @@ import tkinter as tk
 
 # Create the main window
 window = tk.Tk()
-window.title("Text Field Example")
+window.title("Chatbot Client")
 
 # Create a label and an input text field
-input_label = tk.Label(window, text="Enter some text:")
-input_text_field = tk.Entry(window)
+input_label = tk.Label(window, text="Enter your question:")
+input_text_field = tk.Text(window, height=10, width=100, wrap=tk.WORD)
 
 # Create an output label and an output text field
 output_label = tk.Label(window, text="Output:")
-output_text_field = tk.Entry(window)
+output_text_field = tk.Text(window, height=20, width=100, wrap=tk.WORD)
 
 # Create a button
-button = tk.Button(window, text="Copy", command=copy_text)
+button = tk.Button(window, text="Chat", command=process_question)
 
 # Place the labels and text fields in the window
 input_label.pack()
@@ -83,7 +86,5 @@ button.pack()
 
 # Run the main loop
 window.mainloop()
-
-
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
