@@ -16,7 +16,6 @@ def chatwithOpenAI(question):
     import os
     # import openai
     # openai.organization = ""
-    # openai.api_key = os.getenv("OPENAI_API_KEY")
     # openai.Model.list()
     import openai
 
