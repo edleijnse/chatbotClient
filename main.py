@@ -20,7 +20,9 @@ def chatwithOpenAI(question):
     import openai
 
     # Set your API key
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+
+    # openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key_path = "/home/ed/api_key"
 
     # Set the model to use
     model_engine = "text-davinci-003"
@@ -59,7 +61,6 @@ def process_question():
 if __name__ == '__main__':
     question = "Bitte schreibe einen Email auf Deutsch an Frau Koepli. Ich möchte mitteilen, dass die Heizung zu hoch abgestellt is: der Zimmertemperatur ist 24.5 Grad. Gebäude:Büttenenhalde 37, Apartment 38. Bei dieser Gelegenheit möchte ich Frau Koepli auch eine schöne Weihnachtszeit zuwünschen und ein frohes Neues Jahr."
 
-import tkinter as tk
 
 # Create the main window
 window = tk.Tk()
